@@ -1,3 +1,2 @@
 # build files
-build/*
-project_1/myrobot/build/CMakeCache.txt
+project_1/myrobot/build/*
