@@ -1,3 +1,0 @@
-/home/saeed/ROS_workspace/myrobot/build/CMakeFiles/edit_cache.dir
-/home/saeed/ROS_workspace/myrobot/build/CMakeFiles/rebuild_cache.dir
-/home/saeed/ROS_workspace/myrobot/build/CMakeFiles/hello.dir
