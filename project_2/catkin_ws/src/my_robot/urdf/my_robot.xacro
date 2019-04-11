@@ -137,6 +137,37 @@
 
   </link>
 
+
+  <link name='hokuyo'>
+    <pose>0.15 0 .1 0 0 0</pose>
+
+    <inertial>
+      <mass value="1e-5"/>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <inertia
+          ixx="1e-6" ixy="0" ixz="0"
+          iyy="1e-6" iyz="0"
+          izz="1e-6"/>
+    </inertial>
+
+    <collision name='hokuyo_collision'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+        <box size=".1 .1 .1"/>
+      </geometry>
+    </collision>
+
+    <visual name='hokuyo_visual'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/>
+      <geometry>
+        <filename="package://my_robot/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+
+  </link>
+
+
+
   <joint type="continuous" name="left_wheel_hinge">
     <origin xyz="0 0.15 0" rpy="0 0 0"/>
     <child link="left_wheel"/>
@@ -158,6 +189,14 @@
   <joint type="fixed" name="camera_joint">
     <origin xyz="0.2 0 0" rpy="0 0 0"/>
     <child link="camera"/>
+    <parent link="chassis"/>
+    <axis xyz="1 1 1" rpy="0 0 0"/>
+  </joint>
+
+
+  <joint type="fixed" name="hokuyo_joint">
+    <origin xyz="0.15 0 .1" rpy="0 0 0"/>
+    <child link="hokuyo"/>
     <parent link="chassis"/>
     <axis xyz="1 1 1" rpy="0 0 0"/>
   </joint>
