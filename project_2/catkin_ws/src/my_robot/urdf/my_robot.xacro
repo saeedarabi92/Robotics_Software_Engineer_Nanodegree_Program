@@ -135,6 +135,10 @@
       </geometry>
     </visual>
 
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
   </link>
 
 
