@@ -23,7 +23,7 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request& req, ball_chaser:
   // Publish angles to drive the robot
   motor_command_publisher.publish(motor_command);
 
-  res.msg_feedback = "Wheel speed set to x: " + motor_command.linear.x + "and z: "+motor_command.angular.z;
+  res.msg_feedback = "Wheel speed set to x: " + std::to_string(motor_command.linear.x) + "and z: "+std::to_string(motor_command.angular.z);
 
   ROS_INFO_STREAM(res.msg_feedback);
 
@@ -45,7 +45,7 @@ int main(int argc, char** argv)
 
     // TODO: Define a drive /ball_chaser/command_robot service with a handle_drive_request callback function
     ros::ServiceServer service = n.advertiseService("/ball_chaser/command_robot", handle_drive_request);
-    ROS_INFO("Ready to send wheel speed commands...")
+    ROS_INFO("Ready to send wheel speed commands...");
 
     // TODO: Delete the loop, move the code to the inside of the callback function and make the necessary changes to publish the requested velocities instead of constant values
 
