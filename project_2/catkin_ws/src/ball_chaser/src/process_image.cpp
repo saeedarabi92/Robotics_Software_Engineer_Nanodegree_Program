@@ -54,6 +54,10 @@ void process_image_callback(const sensor_msgs::Image img)
  }
 
 
+// Yes, correct. It is a single array, so to access ith row jth element it would be something like image.data[image.step*i+j*3]
+//
+
+
 int main(int argc, char** argv)
 {
     // Initialize the process_image node and create a handle to it
