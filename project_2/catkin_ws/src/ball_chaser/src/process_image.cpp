@@ -1,6 +1,9 @@
 #include "ros/ros.h"
 #include "ball_chaser/DriveToTarget.h"
 #include <sensor_msgs/Image.h>
+#include <unistd.h>
+
+float x_speed, z_speed;
 
 // Define a global client that can request services
 ros::ServiceClient client;
@@ -23,35 +26,34 @@ void drive_robot(float lin_x, float ang_z)
 void process_image_callback(const sensor_msgs::Image img)
 {
 
-    float x_speed, z_speed;
     int white_pixel = 255;
-    ROS_INFO("height = %d, width = %d, msg = %",img.height, img.width, img);
-
+    // ROS_INFO("height = %d, step = %d", img.height, img.step);
+    std::cout << img;
+    usleep(2);
     // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
-   /* for (int i = 0; i < img.step; i++){
-      for(int j = 0; j < img.height; j++){
-        if (img.data[i][j] == white_pixel){
-
-          if (i < img.step/3) {
-              x_speed = 1;
-              z_speed = 1;
-          }
-          if (i > img.step/3) {
-              x_speed = 1;
-              z_speed = -1;
-          }else{
-              x_speed = 1;
-              z_speed = 0;
-          }
-
-    }
-   }
-  }*/
-
-   // drive_robot(x_speed, z_speed);
+  //   for (int i = 0; i < img.step; i++){
+  //     for(int j = 0; j < img.height; j++){
+  //       if (img.data[i][j] == white_pixel){
+  //
+  //         if (i < img.step/3) {
+  //             x_speed = 1;
+  //             z_speed = 1;
+  //         }
+  //         if (i > img.step/3) {
+  //             x_speed = 1;
+  //             z_speed = -1;
+  //         }else{
+  //             x_speed = 1;
+  //             z_speed = 0;
+  //         }
+  //
+  //         drive_bot(x_speed, z_speed);
+  //   }
+  //  }
+  // }
  }
 
 
