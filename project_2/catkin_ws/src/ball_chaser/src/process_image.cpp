@@ -34,21 +34,16 @@ void process_image_callback(const sensor_msgs::Image img)
     // Request a stop when there's no white ball seen by the camera
 
     for (int i = 0; i < img.height; i++){ //height is 800
-        for (int j = 0; j < img.step; j++){ // step is 2400
+        for (int j = 0; j < img.step; j+=3){ // step is 2400
 
             if (img.data[img.step*i + j] == white_pixel &&
                 img.data[img.step*i + j + 1] == white_pixel &&
                 img.data[img.step*i + j + 2] == white_pixel){
-                // std::cout << "j "<< j  << '\n' ;
-                // std::cout << "i "<< i  << '\n' ;
-                // std::cout << "img.step "<< img.step << '\n';
-                // std::cout << "img.height "<< img.height << '\n';
-                // std::cout << "img.width "<< img.width << '\n';
 
                 if (3*j < img.step) {
                     x_speed = .5;
                     z_speed = 0.9;
-                }else if (3*j > img.step) {
+                }else if (3*j > 2 * img.step) {
                     x_speed = .5;
                     z_speed = -0.9;
                 }else{
