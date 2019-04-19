@@ -24,36 +24,45 @@ void drive_robot(float lin_x, float ang_z)
 // This callback function continuously executes and reads the image data
 void process_image_callback(const sensor_msgs::Image img)
 {
-    int x_speed, z_speed;
     int white_pixel = 255;
+    float x_speed = 0.0;
+    float z_speed = 0.0;
     // ROS_INFO("height = %d, step = %d", img.height, img.step);
-    std::cout << img;
-    usleep(2);
     // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
-    for (int i = 0; i < img.height; i++){
-      for(int j = 0; j < img.step; j++){
-        if (img.data[img.step * i + j * 3] == white_pixel){
 
-          if (j < img.step/3) {
-              float x_speed = 1.;
-              float z_speed = 1.;
-          }
-          if (j > img.step/3) {
-              float x_speed = 1.;
-              float z_speed = -1.;
-          }else{
-              float x_speed = 1.;
-              float z_speed = 0.;
-          }
+    for (int i = 0; i < img.height; i++){ //height is 800
+        for (int j = 0; j < img.step; j++){ // step is 2400
 
+            if (img.data[img.step*i + j] == white_pixel &&
+                img.data[img.step*i + j + 1] == white_pixel &&
+                img.data[img.step*i + j + 2] == white_pixel){
+                // std::cout << "j "<< j  << '\n' ;
+                // std::cout << "i "<< i  << '\n' ;
+                // std::cout << "img.step "<< img.step << '\n';
+                // std::cout << "img.height "<< img.height << '\n';
+                // std::cout << "img.width "<< img.width << '\n';
+
+                if (3*j < img.step) {
+                    x_speed = .5;
+                    z_speed = 0.9;
+                }else if (3*j > img.step) {
+                    x_speed = .5;
+                    z_speed = -0.9;
+                }else{
+                    x_speed = .5;
+                    z_speed = 0.;
+
+                }
+            }
+        }
     }
-   }
-  }
-  drive_robot(x_speed, z_speed);
- }
+    drive_robot(x_speed, z_speed);
+}
+
+
 
 
 // Yes, correct. It is a single array, so to access ith row jth element it would be something like image.data[image.step*i+j*3]
