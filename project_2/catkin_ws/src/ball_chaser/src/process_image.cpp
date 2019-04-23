@@ -40,14 +40,14 @@ void process_image_callback(const sensor_msgs::Image img)
                 img.data[img.step*i + j + 1] == white_pixel &&
                 img.data[img.step*i + j + 2] == white_pixel){
 
-                if (3*j < img.step) {
-                    x_speed = .5;
-                    z_speed = 0.9;
-                }else if (3*j > 2 * img.step) {
-                    x_speed = .5;
-                    z_speed = -0.9;
+                if (9*j < 4 * img.step) {
+                    x_speed = 0.0;
+                    z_speed = 1;
+                }else if (9*j > 5 * img.step) {
+                    x_speed = 0.;
+                    z_speed = -1;
                 }else{
-                    x_speed = .5;
+                    x_speed = 1;
                     z_speed = 0.;
 
                 }
