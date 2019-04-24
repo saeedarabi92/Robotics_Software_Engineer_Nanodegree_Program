@@ -2,6 +2,7 @@
 #include "ball_chaser/DriveToTarget.h"
 #include <sensor_msgs/Image.h>
 #include <unistd.h>
+#include <vector>;
 
 
 // Define a global client that can request services
@@ -24,6 +25,7 @@ void drive_robot(float lin_x, float ang_z)
 // This callback function continuously executes and reads the image data
 void process_image_callback(const sensor_msgs::Image img)
 {
+    std::vector<int> whitepixels;
     int white_pixel = 255;
     float x_speed = 0.0;
     float z_speed = 0.0;
@@ -40,20 +42,29 @@ void process_image_callback(const sensor_msgs::Image img)
                 img.data[img.step*i + j + 1] == white_pixel &&
                 img.data[img.step*i + j + 2] == white_pixel){
 
-                if (9*j < 4 * img.step) {
-                    x_speed = 0.0;
-                    z_speed = 1;
-                }else if (9*j > 5 * img.step) {
-                    x_speed = 0.;
-                    z_speed = -1;
-                }else{
-                    x_speed = 1;
-                    z_speed = 0.;
-
-                }
+                // storing the location of white pixels:
+                
+                whitepixels.push_back(j);
             }
         }
     }
+
+    // Average the location of white pixels in the image:
+
+    int avrage_whitepixels = std::accumulate(whitepixels.begin(), whitepixels.end(), 0) / whitepixels.size();
+
+    if (9 * avrage_whitepixels < 4 * img.step) {
+            x_speed = 0.0;
+            z_speed = 1;
+        }else if (9 * avrage_whitepixels > 5 * img.step) {
+            x_speed = 0.;
+            z_speed = -1;
+        }else{
+            x_speed = 1;
+            z_speed = 0.;
+                }
+
+
     drive_robot(x_speed, z_speed);
 }
 
