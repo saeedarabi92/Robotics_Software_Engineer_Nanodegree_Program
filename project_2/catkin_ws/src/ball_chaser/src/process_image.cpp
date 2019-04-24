@@ -2,7 +2,7 @@
 #include "ball_chaser/DriveToTarget.h"
 #include <sensor_msgs/Image.h>
 #include <unistd.h>
-#include <vector>;
+#include <vector>
 
 
 // Define a global client that can request services
@@ -43,7 +43,7 @@ void process_image_callback(const sensor_msgs::Image img)
                 img.data[img.step*i + j + 2] == white_pixel){
 
                 // storing the location of white pixels:
-                
+
                 whitepixels.push_back(j);
             }
         }
