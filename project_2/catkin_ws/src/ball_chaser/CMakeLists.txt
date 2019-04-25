@@ -197,8 +197,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-
-include_directories(include ${catkin_INCLUDE_DIRS})
 #drive_bot.cpp
 add_executable(drive_bot src/drive_bot.cpp)
 target_link_libraries(drive_bot ${catkin_LIBRARIES})
