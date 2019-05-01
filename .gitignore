@@ -1,3 +1,7 @@
-build
-devel
-
+build/
+bin/
+devel/
+*.log
+*.swp
+*.user
+.idea/%
