@@ -1,0 +1,18 @@
+<launch>
+
+<!-- TODO: Add nodes here -->
+
+<arg name="map_file" default="$(find my_robot/maps/map.yaml"/>
+<!-- Run the map server -->
+<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+<!--- Run AMCL -->
+<node pkg="amcl" type="amcl" name="amcl">
+  <!-- <remap from="scan" to="base_scan"/> -->
+</node>
+
+<!--- Run Move Base -->
+<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+</node>
+
+</launch>
