@@ -4,10 +4,10 @@
 
 
 <p align="center">
-  <img src="catkin_ws/src/Screenshot from 2019-06-04 18-37-46.png" width=500 height=800>
+  <img src="catkin_ws/src/Screenshot from 2019-06-04 18-37-46.png" width=800 height=500>
 </p>
 
 
 <p align="center">
-  <img src="catkin_ws/src/Screenshot from 2019-06-04 18-39-05.png" width=500 height=800>
+  <img src="catkin_ws/src/Screenshot from 2019-06-04 18-39-05.png" width=800 height=500>
 </p>
