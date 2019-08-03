@@ -9,7 +9,7 @@ uint8_t counter = 0;
 void deliverycallback(const std_msgs::UInt8::ConstPtr& msg){
 
     ROS_INFO("Message recieved!");
-    counter = msg->data;
+    counter += msg->data;
     return;
 }
 
@@ -27,8 +27,8 @@ int main( int argc, char** argv )
 
   while (ros::ok())
   {
-
-
+    //Do this every cycle to ensure the subscriber receives the message
+    ros::spinOnce();
 
     visualization_msgs::Marker marker;
     // Set the frame ID and timestamp.  See the TF tutorials for information on these.
@@ -43,7 +43,7 @@ int main( int argc, char** argv )
     // Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
     marker.type = shape;
 
-    ROS_INFO("The counter is %d", counter);
+    // ROS_INFO("The counter is %d", counter);
     switch (counter)
     {
 
