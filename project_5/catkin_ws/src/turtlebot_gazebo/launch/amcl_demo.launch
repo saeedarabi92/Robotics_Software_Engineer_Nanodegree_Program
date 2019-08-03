@@ -1,7 +1,7 @@
 <launch>
   <!-- Map server -->
-  <arg name="map_file" default="$(find map)/map.pgm"/>
-  
+  <arg name="map_file" default="/home/saeed/Desktop/github/Robotics_Software_Engineer_Nanodegree_Program/project_5/catkin_ws/src/map/my_new_map.yaml"/>
+
   <arg name="3d_sensor" default="$(env TURTLEBOT_3D_SENSOR)"/>  <!-- r200, kinect, asus_xtion_pro -->
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
